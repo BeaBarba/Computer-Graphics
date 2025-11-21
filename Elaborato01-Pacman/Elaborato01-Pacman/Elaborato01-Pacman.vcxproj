@@ -29,9 +29,14 @@
     <ClInclude Include="C:\dependencies_GL_GLFW\ImGui\imstb_textedit.h" />
     <ClInclude Include="C:\dependencies_GL_GLFW\ImGui\imstb_truetype.h" />
     <ClInclude Include="Gui.h" />
+    <ClInclude Include="InitGeometrie.h" />
+    <ClInclude Include="InitVAO.h" />
     <ClInclude Include="lib.h" />
     <ClInclude Include="Rendering.h" />
+    <ClInclude Include="Scena.h" />
     <ClInclude Include="ShaderMaker.h" />
+    <ClInclude Include="StbImage.h" />
+    <ClInclude Include="Strutture.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C:\dependencies_GL_GLFW\glad.c" />
@@ -43,14 +48,22 @@
     <ClCompile Include="C:\dependencies_GL_GLFW\ImGui\imgui_tables.cpp" />
     <ClCompile Include="C:\dependencies_GL_GLFW\ImGui\imgui_widgets.cpp" />
     <ClCompile Include="Gui.cpp" />
+    <ClCompile Include="InitGeometrie.cpp" />
+    <ClCompile Include="InitVAO.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Rendering.cpp" />
+    <ClCompile Include="Scena.cpp" />
     <ClCompile Include="ShaderMaker.cpp" />
+    <ClCompile Include="StbImage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="fragmentShader.glsl" />
+    <None Include="fragmentShaderBackground.glsl" />
     <None Include="packages.config" />
     <None Include="vertexShader.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="channel0.jpg" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

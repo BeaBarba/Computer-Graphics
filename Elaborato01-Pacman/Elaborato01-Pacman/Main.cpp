@@ -7,6 +7,7 @@
 #include "Gui.h"				// Header file della GUI personalizzata
 #include "ShaderMaker.h"		// Header file della classe che gestisce gli Shader
 #include "Rendering.h"			// Header file della funzione di rendering
+#include "Scena.h"				// Header file per le funzioni sulla scena
 
 /*----------------------------------------------------------------*/
 
@@ -20,14 +21,25 @@ ImVec4 clear_color_2 = ImVec4(0.0f, 1.0f, 0.5f, 1.0f);			// Colore di pulizia se
 
 /* Finestra */
 int window_width = 1000, window_height = 800;					// Risoluzione finesta iniziale
+float window_width_background, window_height_background;		// Servono a cambiare la risoluzione della finestra solo per lo sfondo
 
 /* Gui */
 bool button_set = false;										// Flag per cambiare interfaccia
 
 /* Shader */
 unsigned int program_id;										// Identificativo del program shader
+unsigned int program_id_background;								// Identificativo specifivco per il program shader dello sfondo
 
-GLuint id_proj, id_model;										// Identificativi per le matrici di modellazione e proiezione da usare negli shader
+GLuint id_proj, id_model, id_proj_background;					// Identificativi per le matrici di modellazione e proiezione da usare negli shader
+GLuint texture_id_channel0;										// Identificativo della texture da usare
+
+/* Strutture e matrici di trasformazioni */
+vector<Figura> Scena;											// Vettore per impostare le figure nella scena
+mat4 projection, projection_background;										// Matrice che normalizza le coordinate del mondo in cordinate NDC
+
+/* Tempi */
+float currentTime;												// Variabile per tracciare il tempo
+float delta_time;												// Tempo di rendering di un frame
 
 int main(void) {
 
@@ -72,14 +84,36 @@ int main(void) {
 
 	/* Inizializzo gli shader */
 	program_id = ShaderMaker::initShader((char*)"vertexShader.glsl", (char*)"fragmentShader.glsl");
+	program_id_background = ShaderMaker::initShader((char*)"vertexShader.glsl", (char*)"fragmentShaderBackground.glsl");
+
+	/* Inizializzazione finestra */
+	window_height_background = (float)window_height;
+	window_width_background = (float)window_width;
+
+	/* Inizializzazione della scena */
+	costruisciScena(&Scena);
+
+	/* Inizializzazione della matrice di proiezione */
+	projection = ortho(0.0f, (float)window_width, 0.0f, (float)window_height);
+	projection_background = ortho(0.0f, (float)window_width_background, 0.0f, (float)window_height_background);
+
+	/* Salvataggio ID matrice di modellazione e progettazione */
+	id_proj = glGetUniformLocation(program_id, "Projection");
+	id_model = glGetUniformLocation(program_id, "Model");
+	id_proj_background = glGetUniformLocation(program_id_background, "Projection");
+
+	/* Creazione della texture di sfondo */
+	texture_id_channel0 = ShaderMaker::setupTexture("channel0.jpg");
 
 	/* Registrazione dei callback per gli eventi */
 
 	/* Gameloop */
 	while (!glfwWindowShouldClose(window)) {
 
+		currentTime = glfwGetTime();
+
 		/* Disegna la scena */
-		rendering();
+		rendering(currentTime);
 
 		/* Renderizza la GUI ImGui */
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -95,6 +129,11 @@ int main(void) {
 	closeGUI();
 	glfwDestroyWindow(window);
 	glDeleteProgram(program_id);
+	for (int i = 0; i < Scena.size(); i++) {
+		glDeleteBuffers(1, &Scena[i].VBO_vertices);
+		glDeleteBuffers(1, &Scena[i].VBO_colors);
+		glDeleteBuffers(1, &Scena[i].VAO);
+	}
 	glfwTerminate();
 	return 0;
 }

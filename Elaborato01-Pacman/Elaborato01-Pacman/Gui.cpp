@@ -65,18 +65,18 @@ void interfaceGame(void) {
     ImGui::SetNextWindowPos(ImVec2(1, 1));
 
     /* Contenuto della finestra */
-    ImGui::Begin("Area di Gioco", NULL,             // Apre finestra "Impostazioni"
-        ImGuiWindowFlags_NoResize |                 // Impedisce ridimensionamento utente
-        ImGuiWindowFlags_AlwaysAutoResize |         // Ridimensionamento automatico al contenuto
-        ImGuiWindowFlags_NoBackground |             // Sfondo trasparente
-        ImGuiWindowFlags_NoTitleBar |               // Nasconde barra titolo
-        ImGuiWindowFlags_NoMove                     // Impedisce lo spostamento finestra
+    ImGui::Begin("Area di Gioco", NULL,                             // Apre finestra "Impostazioni"
+        ImGuiWindowFlags_NoResize |                                 // Impedisce ridimensionamento utente
+        ImGuiWindowFlags_AlwaysAutoResize |                         // Ridimensionamento automatico al contenuto
+        ImGuiWindowFlags_NoBackground |                             // Sfondo trasparente
+        ImGuiWindowFlags_NoTitleBar |                               // Nasconde barra titolo
+        ImGuiWindowFlags_NoMove                                     // Impedisce lo spostamento finestra
     );
     ImGui::SetNextWindowPos(ImVec2(0.0, 0.0));
-    ImGui::ColorEdit4("Colore sfondo", (float*)&clear_color_2);
+    //ImGui::ColorEdit4("Colore sfondo", (float*)&clear_color_2);   // Mostra a video i valori RGBA del colore 
 
-    ImGui::End();                                   // Chiude la finestra
-    ImGui::Render();                                // Compila i dati UI per il rendering finale
+    ImGui::End();                                                  // Chiude la finestra
+    ImGui::Render();                                               // Compila i dati UI per il rendering finale
 }
 
 /* Funzione per chiudere e pulire ImGui correttamente */

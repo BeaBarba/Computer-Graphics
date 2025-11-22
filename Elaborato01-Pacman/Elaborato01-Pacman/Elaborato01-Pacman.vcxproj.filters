@@ -135,7 +135,7 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="vertexShader.glsl" />
-    <None Include="fragmentShader.glsl" />
+    <None Include="fragmentShaderFigure.glsl" />
     <None Include="fragmentShaderBackground.glsl" />
   </ItemGroup>
   <ItemGroup>

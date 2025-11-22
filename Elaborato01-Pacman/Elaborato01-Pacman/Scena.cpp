@@ -42,6 +42,19 @@ void costruisciScena(vector<Figura>* Scena) {
 	finestra_di_gioco.Model = scale(finestra_di_gioco.Model, finestra_di_gioco.scale);
 	INIT_VAO(&finestra_di_gioco);
 	Scena->push_back(finestra_di_gioco);
+
+	/* Pacman */
+	Figura pacman;
+	pacman.nTriangles = 30;
+	pacman.position = vec3((float)window_width / 4.0, (float)window_height / 20.0, 0.0);
+	pacman.orientamento = DESTRA;
+	pacman.nome = PACMAN;
+	INIT_PACMAN(0.0, 0.0, 0.2, 0.2, &pacman, vec4(1.0, 1.0, 0.0, 1.0), vec4(1.0, 0.9, 0.0, 1.0));
+	pacman.Model = mat4(1.0);
+	pacman.scale = vec3(window_width / 12.0, window_width / 12.0, 0.0);
+	pacman.Model = scale(pacman.Model, pacman.scale);
+	INIT_VAO(&pacman);
+	Scena->push_back(pacman);
 }
 
 /* Funzione che data una figura, un angolo di rotazione in gradi ricalcola la posizione, la scala e la rotazione della figura */

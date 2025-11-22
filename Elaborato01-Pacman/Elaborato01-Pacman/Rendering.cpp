@@ -16,6 +16,7 @@ extern GLuint program_id, program_id_background;
 /* Scena e matrici di trasformazione */
 extern vector<Figura> Scena;
 extern mat4 projection, projection_background;
+extern float angolo;													// Angolo di rotazione
 
 /* Gui */
 extern bool button_set;													// Flag bottoni e checkbox dell'interfaccia
@@ -81,6 +82,21 @@ void rendering(float current_time) {
 		ShaderMaker::useShaderWithUniform(program_id, projection, Scena[FINESTRA].Model, 0.0, vec2(window_width, window_height), false, false);
 		glBindVertexArray(Scena[FINESTRA].VAO);
 		glDrawArrays(Scena[FINESTRA].render, 0, Scena[FINESTRA].nv);
+
+		/* Animazione Pacman */
+		Scena[PACMAN].vertices.clear();
+		Scena[PACMAN].colors.clear();
+		//current_time *= 10;
+		/* Cambia numero di triangoli con cui disegnarlo per creare un'animazione */
+		Scena[PACMAN].nTriangles = 30 + (int)(190 * (sin(current_time*15) + 1) / 2);
+		INIT_PACMAN(0.0, 0.0, 0.2, 0.2, &Scena[PACMAN], vec4(1.0, 1.0, 0.0, 1.0), vec4(1.0, 0.9, 0.0, 1.0));
+		INIT_VAO(&Scena[PACMAN]);
+		posizionaOrientaScala(&Scena[PACMAN], angolo);
+		ShaderMaker::useShaderWithUniform(program_id, projection, Scena[PACMAN].Model, 0.0, vec2(window_width, window_height), false, false);
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+		// Associa il Vertex Array Object (VAO) della forma, che contiene i dati dei vertici da disegnare
+		glBindVertexArray(Scena[PACMAN].VAO);
+		glDrawArrays(Scena[PACMAN].render, 0, Scena[PACMAN].nv);
 
 	}
 	else {

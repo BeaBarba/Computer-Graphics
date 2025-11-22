@@ -12,6 +12,13 @@ enum Forma {
     FANTASMI = 6
 };
 
+enum Orientamento {
+    DESTRA = 0,
+    SU = 1,
+    SINISTRA = 2,
+    GIU = 3
+};
+
 typedef struct {
     int nome;                       // Serve a definire il tipo di figura
     GLuint VAO;                     // Identificatore del Vertex Array Object (VAO)
@@ -25,4 +32,5 @@ typedef struct {
     mat4 Model;                     // Matrice di Modellazione associata alla figura che posizione l'oggetto nel mondo
     vec3 position;                  // Posizione in coordinate del mondo
     vec3 scale;                     // Scala
+    Orientamento orientamento;      // Stabilisce in che direzione è girata la figura
 } Figura;

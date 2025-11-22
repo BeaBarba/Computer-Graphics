@@ -85,7 +85,7 @@ int main(void) {
 	InitializeImGui(window);
 
 	/* Inizializzo gli shader */
-	program_id = ShaderMaker::initShader((char*)"vertexShader.glsl", (char*)"fragmentShader.glsl");
+	program_id = ShaderMaker::initShader((char*)"vertexShader.glsl", (char*)"fragmentShaderFigure.glsl");
 	program_id_background = ShaderMaker::initShader((char*)"vertexShader.glsl", (char*)"fragmentShaderBackground.glsl");
 
 	/* Inizializzazione finestra */

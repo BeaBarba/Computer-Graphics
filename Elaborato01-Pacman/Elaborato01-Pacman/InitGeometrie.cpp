@@ -45,3 +45,24 @@ void INIT_PACMAN(float cx, float cy, float raggiox, float raggioy, Figura* fig, 
     fig->nv = fig->vertices.size();
     fig->render = GL_TRIANGLE_FAN;
 }
+
+void INIT_MURO(vec3 vs_bottom, vec3 vd_bottom, vec3 vs_top, vec3 vd_top, Figura* fig, vec4 color_top, vec4 color_bottom) {
+
+    fig->vertices.clear();
+    fig->colors.clear();
+
+    /* Vertici */
+    fig->vertices.push_back(vs_bottom);     // Punto in basso a sinistra
+    fig->vertices.push_back(vd_bottom);     // Punto in basso a destra
+    fig->vertices.push_back(vd_top);        // Punto in alto a destra
+    fig->vertices.push_back(vs_top);        // Punto in alto a sinistra
+
+    /* Colore */
+    fig->colors.push_back(color_bottom);    // Colore vertice in basso a sinistra
+    fig->colors.push_back(color_bottom);    // Colore vertice in basso a destra
+    fig->colors.push_back(color_top);       // Colore vertice in alto a destra
+    fig->colors.push_back(color_top);       // Colore vertice in alto a sinistra
+
+    fig->nv = fig->vertices.size();
+    fig->render = GL_TRIANGLE_FAN;
+}

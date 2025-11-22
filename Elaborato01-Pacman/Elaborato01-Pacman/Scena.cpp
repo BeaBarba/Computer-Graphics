@@ -55,6 +55,22 @@ void costruisciScena(vector<Figura>* Scena) {
 	pacman.Model = scale(pacman.Model, pacman.scale);
 	INIT_VAO(&pacman);
 	Scena->push_back(pacman);
+
+	/* Muri */
+	vector<MuroCoord> muri = creaMuri(finestra_di_gioco.vertices);
+
+	for (MuroCoord muro : muri) {
+		Figura wall;
+		wall.nTriangles = 2;
+		wall.position = vec3(offset_finestra_width, offset_finestra_height, 1.0);
+		wall.nome = MURI;
+		INIT_MURO(muro.bottom_start, muro.bottom_end, muro.top_start, muro.top_end, &wall, vec4(0.1, 0.1, 1.0, 0.5), vec4(0.0, 0.0, 1.0, 1.0));
+		wall.Model = mat4(1.0);
+		wall.scale = finestra_di_gioco.scale;
+		wall.Model = scale(wall.Model, wall.scale);
+		INIT_VAO(&wall);
+		Scena->push_back(wall);
+	}
 }
 
 /* Funzione che data una figura, un angolo di rotazione in gradi ricalcola la posizione, la scala e la rotazione della figura */

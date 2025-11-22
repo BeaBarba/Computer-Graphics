@@ -86,7 +86,6 @@ void rendering(float current_time) {
 		/* Animazione Pacman */
 		Scena[PACMAN].vertices.clear();
 		Scena[PACMAN].colors.clear();
-		//current_time *= 10;
 		/* Cambia numero di triangoli con cui disegnarlo per creare un'animazione */
 		Scena[PACMAN].nTriangles = 30 + (int)(190 * (sin(current_time*15) + 1) / 2);
 		INIT_PACMAN(0.0, 0.0, 0.2, 0.2, &Scena[PACMAN], vec4(1.0, 1.0, 0.0, 1.0), vec4(1.0, 0.9, 0.0, 1.0));
@@ -97,6 +96,17 @@ void rendering(float current_time) {
 		// Associa il Vertex Array Object (VAO) della forma, che contiene i dati dei vertici da disegnare
 		glBindVertexArray(Scena[PACMAN].VAO);
 		glDrawArrays(Scena[PACMAN].render, 0, Scena[PACMAN].nv);
+
+		for (int i = 3; i < Scena.size(); i++) {
+
+			posizionaOrientaScala(&Scena[i], 0.0);
+			ShaderMaker::useShaderWithUniform(program_id, projection, Scena[i].Model, 0.0, vec2(window_width, window_height), false, false);
+			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+			// Associa il Vertex Array Object (VAO) della forma, che contiene i dati dei vertici da disegnare
+			glBindVertexArray(Scena[i].VAO);
+			glDrawArrays(Scena[i].render, 0, Scena[i].nv);
+
+		}
 
 	}
 	else {

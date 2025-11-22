@@ -5,8 +5,10 @@
 extern int window_width, window_height;			                            // Risoluzione finesta iniziale 
 extern float window_width_update, window_height_update;                     // Risoluzione finestra di gioco aggiornata
 extern float window_width_background, window_height_background;             // Risoluzione finestra 
-extern mat4 projection, projection_background;				                // Matrice che normalizza le coordinate del mondo in cordinate NDC
+
+/* Scena E Matrici Di Trasformazione */
 extern vector<Figura> Scena;                                                // Lista che contiene le figure da disegnare
+extern mat4 projection, projection_background;				                // Matrice che normalizza le coordinate del mondo in cordinate NDC
 
 /* Aspect Razio */
 float x_offset = 0.0, y_offset = 0.0;                                       // Offset per centrare la viewport
@@ -37,6 +39,7 @@ void framebuffer_size_callback(GLFWwindow* window, int w, int h) {
         window_height_update = w / aspect_ratio_mondo;
         // Calcola l’offset verticale per centrare la viewport nel framebuffer più alto
         y_offset = ((float)h - window_height_update) / 2.0f;
+        x_offset = 0.0;
     }
     else
     {
@@ -46,9 +49,9 @@ void framebuffer_size_callback(GLFWwindow* window, int w, int h) {
         window_width_update = h * aspect_ratio_mondo;
         // Calcola l’offset orizzontale per centrare la viewport nel framebuffer più largo
         x_offset = ((float)w - window_width_update) / 2.0f;
+        y_offset = 0.0;
     }
 
     /* Imposta la viewport OpenGL con offset e dimensioni calcolate per centrarla e mantenere il giusto aspect ratio*/
-    glViewport(x_offset, y_offset, window_width_update, window_height_update);
-
+    //glViewport(x_offset, y_offset, window_width_update, window_height_update);
 }

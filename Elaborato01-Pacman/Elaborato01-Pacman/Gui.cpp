@@ -5,9 +5,6 @@
 /* Colori */
 extern ImVec4 clear_color_2;
 
-/* Finestra */
-extern int window_width, window_height;
-
 /* Gui */
 extern bool button_set;
 

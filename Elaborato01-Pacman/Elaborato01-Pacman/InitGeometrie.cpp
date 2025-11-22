@@ -66,3 +66,24 @@ void INIT_MURO(vec3 vs_bottom, vec3 vd_bottom, vec3 vs_top, vec3 vd_top, Figura*
     fig->nv = fig->vertices.size();
     fig->render = GL_TRIANGLE_FAN;
 }
+
+void INIT_BUTTERFLY(float cx, float cy, float raggiox, float raggioy, Figura* fig, vec4 color_top, vec4 color_bottom) {
+    int i;
+    float t, xx, yy;
+    float stepA = (2 * PI) / fig->nTriangles;
+
+    fig->vertices.push_back(vec3(cx, cy, 0.0));
+    fig->colors.push_back(color_bottom);
+
+    for (i = 0; i <= fig->nTriangles; i++) {
+        t = (double)i * stepA;
+        xx = cx + raggiox * (sin(t) * (exp(cos(t)) - 2 * cos(4 * t)) + pow(sin(t / 12), 5));
+        yy = cy + raggioy * (cos(t) * (exp(cos(t)) - 2 * cos(4 * t)) + pow(sin(t / 12), 5));
+
+        fig->vertices.push_back(vec3(xx, yy, 0.0));
+        fig->colors.push_back(color_top);
+    }
+
+    fig->nv = fig->vertices.size();
+    fig->render = GL_TRIANGLE_FAN;
+}

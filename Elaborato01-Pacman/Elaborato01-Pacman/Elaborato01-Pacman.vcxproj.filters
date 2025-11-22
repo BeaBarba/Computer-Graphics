@@ -84,6 +84,9 @@
     <ClInclude Include="Muri.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
+    <ClInclude Include="Cibo.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C:\dependencies_GL_GLFW\ImGui\imgui.cpp">
@@ -138,6 +141,9 @@
       <Filter>File di origine</Filter>
     </ClCompile>
     <ClCompile Include="Muri.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="Cibo.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
   </ItemGroup>

@@ -30,7 +30,6 @@ extern float delta_time;
 float last_frame = 0.0;													// Tempo per calcolare il tempo di rendering di un frame
 
 void rendering(float current_time) {
-	vec4 colorA, colorB;
 
 	/* Pulizia del buffer del colore di sfondo */
 	if (!button_set) {
@@ -79,9 +78,10 @@ void rendering(float current_time) {
 
 		/* Disegna la finestra di gioco */
 		posizionaOrientaScala(&Scena[FINESTRA], 0.0);
-		ShaderMaker::useShaderWithUniform(program_id, projection, Scena[FINESTRA].Model, 0.0, vec2(window_width, window_height), false, false);
+		ShaderMaker::useShaderWithUniform(program_id, projection, Scena[FINESTRA].Model, 0.0, vec2(window_width_update, window_height_update), false, false);
 		glBindVertexArray(Scena[FINESTRA].VAO);
 		glDrawArrays(Scena[FINESTRA].render, 0, Scena[FINESTRA].nv);
+
 
 		/* Animazione Pacman */
 		Scena[PACMAN].vertices.clear();
@@ -96,16 +96,16 @@ void rendering(float current_time) {
 		// Associa il Vertex Array Object (VAO) della forma, che contiene i dati dei vertici da disegnare
 		glBindVertexArray(Scena[PACMAN].VAO);
 		glDrawArrays(Scena[PACMAN].render, 0, Scena[PACMAN].nv);
-
+		
 		for (int i = 3; i < Scena.size(); i++) {
-
+		
 			posizionaOrientaScala(&Scena[i], 0.0);
 			ShaderMaker::useShaderWithUniform(program_id, projection, Scena[i].Model, 0.0, vec2(window_width, window_height), false, false);
 			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 			// Associa il Vertex Array Object (VAO) della forma, che contiene i dati dei vertici da disegnare
 			glBindVertexArray(Scena[i].VAO);
 			glDrawArrays(Scena[i].render, 0, Scena[i].nv);
-
+		
 		}
 
 	}

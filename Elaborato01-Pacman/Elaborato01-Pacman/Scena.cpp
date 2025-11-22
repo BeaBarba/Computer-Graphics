@@ -55,6 +55,7 @@ void costruisciScena(vector<Figura>* Scena) {
 	pacman.Model = scale(pacman.Model, pacman.scale);
 	INIT_VAO(&pacman);
 	Scena->push_back(pacman);
+	
 
 	/* Muri */
 	vector<MuroCoord> muri = creaMuri(finestra_di_gioco.vertices);
@@ -70,6 +71,21 @@ void costruisciScena(vector<Figura>* Scena) {
 		wall.Model = scale(wall.Model, wall.scale);
 		INIT_VAO(&wall);
 		Scena->push_back(wall);
+	}
+
+	/* Cibo */
+	vector<CiboCoord> cibo_farfalle = calcolaCoordinateFarfalle(finestra_di_gioco.vertices);
+	for (CiboCoord farfalla : cibo_farfalle) {
+		Figura butterfly;
+		butterfly.nTriangles = 30;
+		butterfly.position = vec3(offset_finestra_width + 10.0, offset_finestra_height, 1.0);
+		butterfly.nome = FARFALLE;
+		INIT_BUTTERFLY(farfalla.centro_x, farfalla.centro_y, (farfalla.raggio / 3), (farfalla.raggio / 3), &butterfly, vec4(0.0, 1.0, 0.5, 1.0), vec4(1.0, 1.0, 1.0, 1.0));
+		butterfly.Model = mat4(1.0);
+		butterfly.scale = finestra_di_gioco.scale;
+		butterfly.Model = scale(butterfly.Model, butterfly.scale);
+		INIT_VAO(&butterfly);
+		Scena->push_back(butterfly);
 	}
 }
 

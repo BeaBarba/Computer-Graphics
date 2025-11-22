@@ -111,6 +111,7 @@ int main(void) {
 
 	/* Registrazione dei callback per gli eventi */
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+	glfwSetKeyCallback(window, key_callback);
 
 	/* Gameloop */
 	while (!glfwWindowShouldClose(window)) {

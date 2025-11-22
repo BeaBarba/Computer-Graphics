@@ -9,9 +9,13 @@ extern float window_width_background, window_height_background;             // R
 /* Scena E Matrici Di Trasformazione */
 extern vector<Figura> Scena;                                                // Lista che contiene le figure da disegnare
 extern mat4 projection, projection_background;				                // Matrice che normalizza le coordinate del mondo in cordinate NDC
+extern float angolo;                                                        // Angolo di rotazione di Pacman
 
 /* Aspect Razio */
 float x_offset = 0.0, y_offset = 0.0;                                       // Offset per centrare la viewport
+
+/* Movimento */
+const float PASSO = 4;                                                      // Spostamento della figura costante
 
 /* Funzione di callback chiamata ogni volta che la finestra(framebuffer) viene ridimensionata.
    Gestisce il corretto rapporto di aspetto e centra la viewport rispetto alle dimensioni della finestra.*/
@@ -51,7 +55,34 @@ void framebuffer_size_callback(GLFWwindow* window, int w, int h) {
         x_offset = ((float)w - window_width_update) / 2.0f;
         y_offset = 0.0;
     }
+}
 
-    /* Imposta la viewport OpenGL con offset e dimensioni calcolate per centrarla e mantenere il giusto aspect ratio*/
-    //glViewport(x_offset, y_offset, window_width_update, window_height_update);
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
+    switch (key) {
+    case GLFW_KEY_ESCAPE:
+        if (action == GLFW_PRESS)
+            /* Imposta a True il flag booleano di chiusura della finestra */
+            glfwSetWindowShouldClose(window, GLFW_TRUE);
+        break;
+    case GLFW_KEY_UP:                       // Freccia su
+        angolo = 90.0;
+        Scena[PACMAN].position = vec3(Scena[PACMAN].position.x, Scena[PACMAN].position.y + PASSO, 1.0);
+        Scena[PACMAN].orientamento = SU;
+        break;
+    case GLFW_KEY_DOWN:                     // Freccia giù
+        angolo = 270.0;
+        Scena[PACMAN].position = vec3(Scena[PACMAN].position.x, Scena[PACMAN].position.y - PASSO, 1.0);
+        Scena[PACMAN].orientamento = GIU;
+        break;
+    case GLFW_KEY_LEFT:                     // Freccia sinistra
+        angolo = 180.0;
+        Scena[PACMAN].position = vec3(Scena[PACMAN].position.x - PASSO, Scena[PACMAN].position.y, 1.0);
+        Scena[PACMAN].orientamento = SINISTRA;
+        break;
+    case GLFW_KEY_RIGHT:                    // Freccia destra
+        angolo = 0.0;
+        Scena[PACMAN].position = vec3(Scena[PACMAN].position.x + PASSO, Scena[PACMAN].position.y, 1.0);
+        Scena[PACMAN].orientamento = DESTRA;
+        break;
+    }
 }

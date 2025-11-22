@@ -105,7 +105,6 @@ void rendering(float current_time) {
 			// Associa il Vertex Array Object (VAO) della forma, che contiene i dati dei vertici da disegnare
 			glBindVertexArray(Scena[i].VAO);
 			glDrawArrays(Scena[i].render, 0, Scena[i].nv);
-		
 		}
 
 	}

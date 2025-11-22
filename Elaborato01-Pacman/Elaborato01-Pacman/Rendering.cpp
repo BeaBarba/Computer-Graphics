@@ -7,6 +7,7 @@ extern ImVec4 clear_color_1, clear_color_2;
 /* Finestra */
 extern int window_width, window_height;
 extern float window_width_background, window_height_background;			// Risoluzione sfondo
+extern float window_width_update, window_height_update;					// Risoluzione finestra aggiornata
 extern float x_offset, y_offset;										// Offset per centrare la viewport
 
 /* Shader */
@@ -71,6 +72,15 @@ void rendering(float current_time) {
 
 		/* Fa il rendering dello sfondo */
 		glDrawArrays(Scena[BACKGROUND].render, 0, Scena[BACKGROUND].nv);
+
+		/* Riconfigura la ViewPort iniziale con un aspect ratio */
+		glViewport(x_offset, y_offset, window_width_update, window_height_update);
+
+		/* Disegna la finestra di gioco */
+		posizionaOrientaScala(&Scena[FINESTRA], 0.0);
+		ShaderMaker::useShaderWithUniform(program_id, projection, Scena[FINESTRA].Model, 0.0, vec2(window_width, window_height), false, false);
+		glBindVertexArray(Scena[FINESTRA].VAO);
+		glDrawArrays(Scena[FINESTRA].render, 0, Scena[FINESTRA].nv);
 
 	}
 	else {

@@ -28,6 +28,7 @@
     <ClInclude Include="C:\dependencies_GL_GLFW\ImGui\imstb_rectpack.h" />
     <ClInclude Include="C:\dependencies_GL_GLFW\ImGui\imstb_textedit.h" />
     <ClInclude Include="C:\dependencies_GL_GLFW\ImGui\imstb_truetype.h" />
+    <ClInclude Include="GestioneEventi.h" />
     <ClInclude Include="Gui.h" />
     <ClInclude Include="InitGeometrie.h" />
     <ClInclude Include="InitVAO.h" />
@@ -47,6 +48,7 @@
     <ClCompile Include="C:\dependencies_GL_GLFW\ImGui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="C:\dependencies_GL_GLFW\ImGui\imgui_tables.cpp" />
     <ClCompile Include="C:\dependencies_GL_GLFW\ImGui\imgui_widgets.cpp" />
+    <ClCompile Include="GestioneEventi.cpp" />
     <ClCompile Include="Gui.cpp" />
     <ClCompile Include="InitGeometrie.cpp" />
     <ClCompile Include="InitVAO.cpp" />

@@ -6,6 +6,7 @@ C:\dependencies_GL_GLFW\ImGui\imgui_impl_glfw.cpp;B:\Download\Unibo\CG\0 - Elabo
 C:\dependencies_GL_GLFW\ImGui\imgui_impl_opengl3.cpp;B:\Download\Unibo\CG\0 - Elaborati\Elaborato01-Pacman\Elaborato01-Pacman\x64\Debug\imgui_impl_opengl3.obj
 C:\dependencies_GL_GLFW\ImGui\imgui_tables.cpp;B:\Download\Unibo\CG\0 - Elaborati\Elaborato01-Pacman\Elaborato01-Pacman\x64\Debug\imgui_tables.obj
 C:\dependencies_GL_GLFW\ImGui\imgui_widgets.cpp;B:\Download\Unibo\CG\0 - Elaborati\Elaborato01-Pacman\Elaborato01-Pacman\x64\Debug\imgui_widgets.obj
+B:\Download\Unibo\CG\0 - Elaborati\Elaborato01-Pacman\Elaborato01-Pacman\GestioneEventi.cpp;B:\Download\Unibo\CG\0 - Elaborati\Elaborato01-Pacman\Elaborato01-Pacman\x64\Debug\GestioneEventi.obj
 B:\Download\Unibo\CG\0 - Elaborati\Elaborato01-Pacman\Elaborato01-Pacman\Gui.cpp;B:\Download\Unibo\CG\0 - Elaborati\Elaborato01-Pacman\Elaborato01-Pacman\x64\Debug\Gui.obj
 B:\Download\Unibo\CG\0 - Elaborati\Elaborato01-Pacman\Elaborato01-Pacman\InitGeometrie.cpp;B:\Download\Unibo\CG\0 - Elaborati\Elaborato01-Pacman\Elaborato01-Pacman\x64\Debug\InitGeometrie.obj
 B:\Download\Unibo\CG\0 - Elaborati\Elaborato01-Pacman\Elaborato01-Pacman\InitVAO.cpp;B:\Download\Unibo\CG\0 - Elaborati\Elaborato01-Pacman\Elaborato01-Pacman\x64\Debug\InitVAO.obj

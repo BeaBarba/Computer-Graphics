@@ -1,2 +1,3 @@
-﻿  Gui.cpp
+﻿  Main.cpp
+B:\Download\Unibo\CG\0 - Elaborati\Elaborato01-Pacman\Elaborato01-Pacman\Main.cpp(118,28): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
   Elaborato01-Pacman.vcxproj -> B:\Download\Unibo\CG\0 - Elaborati\Elaborato01-Pacman\x64\Debug\Elaborato01-Pacman.exe

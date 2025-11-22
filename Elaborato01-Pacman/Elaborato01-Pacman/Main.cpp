@@ -8,6 +8,7 @@
 #include "ShaderMaker.h"		// Header file della classe che gestisce gli Shader
 #include "Rendering.h"			// Header file della funzione di rendering
 #include "Scena.h"				// Header file per le funzioni sulla scena
+#include "GestioneEventi.h"		// Header file per la gestione dei callback
 
 /*----------------------------------------------------------------*/
 
@@ -22,6 +23,7 @@ ImVec4 clear_color_2 = ImVec4(0.0f, 1.0f, 0.5f, 1.0f);			// Colore di pulizia se
 /* Finestra */
 int window_width = 1000, window_height = 800;					// Risoluzione finesta iniziale
 float window_width_background, window_height_background;		// Servono a cambiare la risoluzione della finestra solo per lo sfondo
+float window_width_update, window_height_update;				// Servono a cambiare la risoluzione della finestra del gioco
 
 /* Gui */
 bool button_set = false;										// Flag per cambiare interfaccia
@@ -89,6 +91,8 @@ int main(void) {
 	/* Inizializzazione finestra */
 	window_height_background = (float)window_height;
 	window_width_background = (float)window_width;
+	window_height_update = (float)window_height;
+	window_width_update = (float)window_width;
 
 	/* Inizializzazione della scena */
 	costruisciScena(&Scena);
@@ -106,6 +110,7 @@ int main(void) {
 	texture_id_channel0 = ShaderMaker::setupTexture("channel0.jpg");
 
 	/* Registrazione dei callback per gli eventi */
+	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
 	/* Gameloop */
 	while (!glfwWindowShouldClose(window)) {

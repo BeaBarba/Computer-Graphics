@@ -18,6 +18,9 @@ extern vector<Figura> Scena;
 extern mat4 projection, projection_background;
 extern float angolo;													// Angolo di rotazione
 
+/* Rendering */
+extern bool wireframe, showBB;
+
 /* Gui */
 extern bool button_set;													// Flag bottoni e checkbox dell'interfaccia
 
@@ -92,19 +95,18 @@ void rendering(float current_time) {
 		INIT_VAO(&Scena[PACMAN]);
 		posizionaOrientaScala(&Scena[PACMAN], angolo);
 		ShaderMaker::useShaderWithUniform(program_id, projection, Scena[PACMAN].Model, 0.0, vec2(window_width, window_height), false, false);
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-		// Associa il Vertex Array Object (VAO) della forma, che contiene i dati dei vertici da disegnare
-		glBindVertexArray(Scena[PACMAN].VAO);
-		glDrawArrays(Scena[PACMAN].render, 0, Scena[PACMAN].nv);
+		updateBB(&Scena[PACMAN]);
+		disegnaFormaConBB(Scena[PACMAN], wireframe, showBB);
 		
 		for (int i = 3; i < Scena.size(); i++) {
 		
 			posizionaOrientaScala(&Scena[i], 0.0);
+
+			updateBB(&Scena[i]);
+
 			ShaderMaker::useShaderWithUniform(program_id, projection, Scena[i].Model, 0.0, vec2(window_width, window_height), false, false);
-			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-			// Associa il Vertex Array Object (VAO) della forma, che contiene i dati dei vertici da disegnare
-			glBindVertexArray(Scena[i].VAO);
-			glDrawArrays(Scena[i].render, 0, Scena[i].nv);
+
+			disegnaFormaConBB(Scena[i], wireframe, showBB);
 		}
 
 	}

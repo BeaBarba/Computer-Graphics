@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BoundingBox.h" />
     <ClInclude Include="C:\dependencies_GL_GLFW\ImGui\imconfig.h" />
     <ClInclude Include="C:\dependencies_GL_GLFW\ImGui\imgui.h" />
     <ClInclude Include="C:\dependencies_GL_GLFW\ImGui\imgui_impl_glfw.h" />
@@ -43,6 +44,7 @@
     <ClInclude Include="Strutture.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BoundingBox.cpp" />
     <ClCompile Include="C:\dependencies_GL_GLFW\glad.c" />
     <ClCompile Include="C:\dependencies_GL_GLFW\ImGui\imgui.cpp" />
     <ClCompile Include="C:\dependencies_GL_GLFW\ImGui\imgui_demo.cpp" />

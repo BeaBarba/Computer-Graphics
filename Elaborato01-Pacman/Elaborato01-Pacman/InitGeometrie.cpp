@@ -42,6 +42,17 @@ void INIT_PACMAN(float cx, float cy, float raggiox, float raggioy, Figura* fig, 
         fig->colors.push_back(color_bottom);
     }
 
+    /* Crea il bounding box della figura */
+    findBB(fig);
+    fig->vertices.push_back(vec3(fig->min_BB_obj.x, fig->min_BB_obj.y, 0.0));
+    fig->colors.push_back(vec4(1.0, 1.0, 1.0, 1.0));
+    fig->vertices.push_back(vec3(fig->max_BB_obj.x, fig->min_BB_obj.y, 0.0));
+    fig->colors.push_back(vec4(1.0, 1.0, 1.0, 1.0));
+    fig->vertices.push_back(vec3(fig->max_BB_obj.x, fig->max_BB_obj.y, 0.0));
+    fig->colors.push_back(vec4(1.0, 1.0, 1.0, 1.0));
+    fig->vertices.push_back(vec3(fig->min_BB_obj.x, fig->max_BB_obj.y, 0.0));
+    fig->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0));
+
     fig->nv = fig->vertices.size();
     fig->render = GL_TRIANGLE_FAN;
 }
@@ -63,6 +74,17 @@ void INIT_MURO(vec3 vs_bottom, vec3 vd_bottom, vec3 vs_top, vec3 vd_top, Figura*
     fig->colors.push_back(color_top);       // Colore vertice in alto a destra
     fig->colors.push_back(color_top);       // Colore vertice in alto a sinistra
 
+    /* Crea il bounding box della figura */
+    findBB(fig);
+    fig->vertices.push_back(vec3(fig->min_BB_obj.x, fig->min_BB_obj.y, 0.0));
+    fig->colors.push_back(vec4(1.0, 1.0, 1.0, 1.0));
+    fig->vertices.push_back(vec3(fig->max_BB_obj.x, fig->min_BB_obj.y, 0.0));
+    fig->colors.push_back(vec4(1.0, 1.0, 1.0, 1.0));
+    fig->vertices.push_back(vec3(fig->max_BB_obj.x, fig->max_BB_obj.y, 0.0));
+    fig->colors.push_back(vec4(1.0, 1.0, 1.0, 1.0));
+    fig->vertices.push_back(vec3(fig->min_BB_obj.x, fig->max_BB_obj.y, 0.0));
+    fig->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0));
+
     fig->nv = fig->vertices.size();
     fig->render = GL_TRIANGLE_FAN;
 }
@@ -83,6 +105,17 @@ void INIT_BUTTERFLY(float cx, float cy, float raggiox, float raggioy, Figura* fi
         fig->vertices.push_back(vec3(xx, yy, 0.0));
         fig->colors.push_back(color_top);
     }
+
+    /* Crea il bounding box della figura */
+    findBB(fig);
+    fig->vertices.push_back(vec3(fig->min_BB_obj.x, fig->min_BB_obj.y, 0.0));
+    fig->colors.push_back(vec4(1.0, 1.0, 1.0, 1.0));
+    fig->vertices.push_back(vec3(fig->max_BB_obj.x, fig->min_BB_obj.y, 0.0));
+    fig->colors.push_back(vec4(1.0, 1.0, 1.0, 1.0));
+    fig->vertices.push_back(vec3(fig->max_BB_obj.x, fig->max_BB_obj.y, 0.0));
+    fig->colors.push_back(vec4(1.0, 1.0, 1.0, 1.0));
+    fig->vertices.push_back(vec3(fig->min_BB_obj.x, fig->max_BB_obj.y, 0.0));
+    fig->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0));
 
     fig->nv = fig->vertices.size();
     fig->render = GL_TRIANGLE_FAN;
@@ -106,6 +139,17 @@ void INIT_CIRCLE(float cx, float cy, float raggiox, float raggioy, Figura* fig, 
         fig->vertices.push_back(vec3(xx, yy, 0.0));
         fig->colors.push_back(color_bottom);
     }
+
+    /* Crea il bounding box della figura */
+    findBB(fig);
+    fig->vertices.push_back(vec3(fig->min_BB_obj.x, fig->min_BB_obj.y, 0.0));
+    fig->colors.push_back(vec4(1.0, 1.0, 1.0, 1.0));
+    fig->vertices.push_back(vec3(fig->max_BB_obj.x, fig->min_BB_obj.y, 0.0));
+    fig->colors.push_back(vec4(1.0, 1.0, 1.0, 1.0));
+    fig->vertices.push_back(vec3(fig->max_BB_obj.x, fig->max_BB_obj.y, 0.0));
+    fig->colors.push_back(vec4(1.0, 1.0, 1.0, 1.0));
+    fig->vertices.push_back(vec3(fig->min_BB_obj.x, fig->max_BB_obj.y, 0.0));
+    fig->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0));
 
     fig->nv = fig->vertices.size();
     fig->render = GL_TRIANGLE_FAN;

@@ -37,7 +37,12 @@ GLuint texture_id_channel0;										// Identificativo della texture da usare
 
 /* Strutture e matrici di trasformazioni */
 vector<Figura> Scena;											// Vettore per impostare le figure nella scena
-mat4 projection, projection_background;										// Matrice che normalizza le coordinate del mondo in cordinate NDC
+mat4 projection, projection_background;							// Matrice che normalizza le coordinate del mondo in cordinate NDC
+
+/* Rendering */
+bool wireframe = false;											// Flag per decidere se disegnare solo i contorni di una figura 
+bool showBB = false;											// Flag per decidere se disegnare il Bounding Box della figura
+
 
 /* Tempi */
 float currentTime;												// Variabile per tracciare il tempo

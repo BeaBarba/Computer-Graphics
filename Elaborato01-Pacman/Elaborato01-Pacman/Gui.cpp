@@ -8,6 +8,9 @@ extern ImVec4 clear_color_2;
 /* Gui */
 extern bool button_set;
 
+/* Rendering */
+extern bool wireframe, showBB;
+
 int ghost_number = 0;
 
 /* Funzione che inizializzazione la ImGui con GLW e OpenGL */
@@ -42,6 +45,8 @@ void interfaceMenu(void) {
         ImGuiWindowFlags_NoMove                     // Impedisce lo spostamento finestra
     );
     ImGui::InputInt("Numero fantasmi desiderato", &ghost_number);
+    ImGui::Checkbox("Visualizza Wireframe", &wireframe);
+    ImGui::Checkbox("Visualizza Bounding Box", &showBB);
     if (ImGui::Button("Start")) {
         button_set = !button_set;
     }

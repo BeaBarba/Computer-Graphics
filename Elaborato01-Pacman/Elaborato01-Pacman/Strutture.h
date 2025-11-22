@@ -33,4 +33,8 @@ typedef struct {
     vec3 position;                  // Posizione in coordinate del mondo
     vec3 scale;                     // Scala
     Orientamento orientamento;      // Stabilisce in che direzione è girata la figura
+    vec4 min_BB_obj;                // Coordinate del corner inferiore sinistro del Bounding Box dell'oggetto, definite nel sistema di riferimento locale.
+    vec4 max_BB_obj;                // Coordinate del corner superiore destro del Bounding Box dell'oggetto, definite nel sistema di riferimento locale.
+    vec4 min_BB_w;                  // Coordinate del corner inferiore sinistro del Bounding Box dell'oggetto, trasformate nel sistema di riferimento del mondo.
+    vec4 max_BB_w;                  // Coordinate del corner superiore destro del Bounding Box dell'oggetto, trasformate nel sistema di riferimento del mondo.
 } Figura;

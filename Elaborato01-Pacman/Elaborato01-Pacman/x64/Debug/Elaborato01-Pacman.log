@@ -1,3 +1,17 @@
-﻿  Main.cpp
-B:\Download\Unibo\CG\0 - Elaborati\Elaborato01-Pacman\Elaborato01-Pacman\Main.cpp(118,28): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
+﻿  glad.c
+  imgui.cpp
+  imgui_demo.cpp
+  imgui_draw.cpp
+  imgui_impl_glfw.cpp
+  imgui_impl_opengl3.cpp
+  imgui_tables.cpp
+  imgui_widgets.cpp
+  Gui.cpp
+  ShaderMaker.cpp
+B:\Download\Unibo\CG\0 - Elaborati\Elaborato01-Pacman\Elaborato01-Pacman\ShaderMaker.cpp(207,34): warning C4101: 'seconds': variabile locale senza riferimenti
+B:\Download\Unibo\CG\0 - Elaborati\Elaborato01-Pacman\Elaborato01-Pacman\ShaderMaker.cpp(207,10): warning C4101: 'year': variabile locale senza riferimenti
+B:\Download\Unibo\CG\0 - Elaborati\Elaborato01-Pacman\Elaborato01-Pacman\ShaderMaker.cpp(207,27): warning C4101: 'day': variabile locale senza riferimenti
+B:\Download\Unibo\CG\0 - Elaborati\Elaborato01-Pacman\Elaborato01-Pacman\ShaderMaker.cpp(207,18): warning C4101: 'month': variabile locale senza riferimenti
+  StbImage.cpp
+  Generazione del codice in corso...
   Elaborato01-Pacman.vcxproj -> B:\Download\Unibo\CG\0 - Elaborati\Elaborato01-Pacman\x64\Debug\Elaborato01-Pacman.exe

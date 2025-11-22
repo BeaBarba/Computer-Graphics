@@ -87,3 +87,26 @@ void INIT_BUTTERFLY(float cx, float cy, float raggiox, float raggioy, Figura* fi
     fig->nv = fig->vertices.size();
     fig->render = GL_TRIANGLE_FAN;
 }
+
+void INIT_CIRCLE(float cx, float cy, float raggiox, float raggioy, Figura* fig, vec4 color_top, vec4 color_bottom) {
+    int i;                                          // Contatore
+    float t;                                        // Parametro del punto i-esmo sulla circonferenza
+    float xx, yy;
+    float stepA = (2 * PI) / fig->nTriangles;
+
+
+    fig->vertices.push_back(vec3(cx, cy, 0.0));     // Inserisco il vertice che è il centro della circonferenza
+    fig->colors.push_back(color_top);
+
+    for (i = 0; i <= fig->nTriangles; i++) {
+        t = (double)i * stepA;
+        xx = cx + raggiox * cos(t);
+        yy = cy + raggioy * sin(t);
+
+        fig->vertices.push_back(vec3(xx, yy, 0.0));
+        fig->colors.push_back(color_bottom);
+    }
+
+    fig->nv = fig->vertices.size();
+    fig->render = GL_TRIANGLE_FAN;
+}

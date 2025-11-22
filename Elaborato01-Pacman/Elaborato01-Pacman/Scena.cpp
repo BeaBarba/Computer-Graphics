@@ -87,6 +87,20 @@ void costruisciScena(vector<Figura>* Scena) {
 		INIT_VAO(&butterfly);
 		Scena->push_back(butterfly);
 	}
+
+	vector<CiboCoord> cibo_cerchi = calcolaCoordinateCerchi(finestra_di_gioco.vertices);
+	for (CiboCoord cerchio : cibo_cerchi) {
+		Figura circle;
+		circle.nTriangles = 30;
+		circle.position = vec3(offset_finestra_width + 10.0, offset_finestra_height + 10.0, 1.0);
+		circle.nome = CERCHI;
+		INIT_CIRCLE(cerchio.centro_x, cerchio.centro_y, (cerchio.raggio / 4), (cerchio.raggio / 4), &circle, vec4(0.0, 1.0, 0.5, 1.0), vec4(1.0, 1.0, 1.0, 1.0));
+		circle.Model = mat4(1.0);
+		circle.scale = finestra_di_gioco.scale;
+		circle.Model = scale(circle.Model, circle.scale);
+		INIT_VAO(&circle);
+		Scena->push_back(circle);
+	}
 }
 
 /* Funzione che data una figura, un angolo di rotazione in gradi ricalcola la posizione, la scala e la rotazione della figura */

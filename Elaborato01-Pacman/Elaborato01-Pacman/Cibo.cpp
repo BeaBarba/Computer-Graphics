@@ -78,3 +78,29 @@ vector<CiboCoord> calcolaCoordinateFarfalle(vector<vec3> vertices) {
 
 	return farfalleCoord;
 }
+
+vector<CiboCoord> calcolaCoordinateCerchi(vector<vec3> vertices) {
+	/* Dimensione di una cella della finestra se fosse sovrapposta alla matrice */
+	float altezza_cella = vertices[2].y / height_matrice;
+	float larghezza_cella = vertices[2].x / width_matrice;
+
+	vector<CiboCoord> cerchiCoord;
+
+	vector<Cibo> cerchi = checkCiboInMatrice(CERCHIO);
+
+	for (Cibo cerchio : cerchi) {
+		CiboCoord cerchioCoord;
+
+		cerchioCoord.raggio = larghezza_cella;
+
+		/* Coordinate del centro */
+		cerchioCoord.centro_x = (cerchio.column_start + cerchio.column_end) / 2 * larghezza_cella;
+		cerchioCoord.centro_y = (cerchio.row_start + cerchio.row_end) / 2 * altezza_cella;
+
+		cerchiCoord.push_back(cerchioCoord);
+		/* Debug
+		cout << "top_start: (" << farfallaCoord.centro_x << " , " << farfallaCoord.centro_y << ")\n raggio: (" << farfallaCoord.raggio << "\n\n" << endl;
+	   */
+	}
+	return cerchiCoord;
+}

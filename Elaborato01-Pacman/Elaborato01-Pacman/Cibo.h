@@ -21,3 +21,4 @@ struct CiboCoord {
 
 vector<Cibo> checkCiboInMatrice(int tipo_cibo);
 vector<CiboCoord> calcolaCoordinateFarfalle(vector<vec3> vertices);
+vector<CiboCoord> calcolaCoordinateCerchi(vector<vec3> vertices);

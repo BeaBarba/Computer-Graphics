@@ -11,6 +11,10 @@ extern bool button_set;
 /* Rendering */
 extern bool wireframe, showBB;
 
+/* Gioco */
+extern int punteggio;
+extern int counterCibo;
+
 int ghost_number = 0;
 
 /* Funzione che inizializzazione la ImGui con GLW e OpenGL */
@@ -44,12 +48,14 @@ void interfaceMenu(void) {
         ImGuiWindowFlags_NoBackground |             // Sfondo trasparente
         ImGuiWindowFlags_NoMove                     // Impedisce lo spostamento finestra
     );
-    ImGui::InputInt("Numero fantasmi desiderato", &ghost_number);
-    ImGui::Checkbox("Visualizza Wireframe", &wireframe);
-    ImGui::Checkbox("Visualizza Bounding Box", &showBB);
-    if (ImGui::Button("Start")) {
-        button_set = !button_set;
-    }
+
+        ImGui::InputInt("Numero fantasmi desiderato", &ghost_number);
+        ImGui::Checkbox("Visualizza Wireframe", &wireframe);
+        ImGui::Checkbox("Visualizza Bounding Box", &showBB);
+        
+        if (ImGui::Button("Start")) {
+            button_set = !button_set;
+        }
 
     ImGui::End();                                   // Chiude la finestra
     ImGui::Render();                                // Compila i dati UI per il rendering finale
@@ -74,11 +80,41 @@ void interfaceGame(void) {
         ImGuiWindowFlags_NoTitleBar |                               // Nasconde barra titolo
         ImGuiWindowFlags_NoMove                                     // Impedisce lo spostamento finestra
     );
-    ImGui::SetNextWindowPos(ImVec2(0.0, 0.0));
-    //ImGui::ColorEdit4("Colore sfondo", (float*)&clear_color_2);   // Mostra a video i valori RGBA del colore 
+
+        ImGui::SetNextWindowPos(ImVec2(0.0, 0.0));
+        //ImGui::ColorEdit4("Colore sfondo", (float*)&clear_color_2);   // Mostra a video i valori RGBA del colore 
 
     ImGui::End();                                                  // Chiude la finestra
     ImGui::Render();                                               // Compila i dati UI per il rendering finale
+}
+
+/* Funzione di rendering dell'interfaccia grafica per la fine del gioco */
+void interfaceGameEnd(void) {
+
+    /* Preparazione nuovo frame per input GLFW e rendering OpenGL */
+    ImGui_ImplGlfw_NewFrame();
+    ImGui_ImplOpenGL3_NewFrame();
+    ImGui::NewFrame();
+
+    ImGui::SetNextWindowPos(ImVec2(1, 1));
+
+    /* Contenuto della finestra */
+    ImGui::Begin("Partita Terminata", NULL,         // Apre finestra "Impostazioni"
+        ImGuiWindowFlags_NoResize |                 // Impedisce ridimensionamento utente
+        ImGuiWindowFlags_AlwaysAutoResize |         // Ridimensionamento automatico al contenuto
+        ImGuiWindowFlags_NoBackground |             // Sfondo trasparente
+        ImGuiWindowFlags_NoTitleBar |               // Nasconde barra titolo
+        ImGuiWindowFlags_NoMove                     // Impedisce lo spostamento finestra
+    );
+
+        ImGui::Text("Punteggio: %d", punteggio);
+
+        if (ImGui::Button("Restart")) {
+            reset(&button_set, &punteggio, &counterCibo);
+        }
+
+    ImGui::End();                                   // Chiude la finestra
+    ImGui::Render();                                // Compila i dati UI per il rendering finale
 }
 
 /* Funzione per chiudere e pulire ImGui correttamente */

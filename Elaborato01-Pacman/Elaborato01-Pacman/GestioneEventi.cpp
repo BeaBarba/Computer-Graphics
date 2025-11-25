@@ -86,3 +86,11 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
         break;
     }
 }
+
+void reset(bool* button_set, int* punteggio, int* counter) {
+    *button_set = false;
+    *punteggio = 0;
+    *counter = 0;
+    Scena.clear();
+    costruisciScena(&Scena);
+}

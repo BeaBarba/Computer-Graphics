@@ -92,6 +92,7 @@ void costruisciScena(vector<Figura>* Scena) {
 		butterfly.Model = scale(butterfly.Model, butterfly.scale);
 		INIT_VAO(&butterfly);
 		Scena->push_back(butterfly);
+		counterCibo++;
 	}
 
 	vector<CiboCoord> cibo_cerchi = calcolaCoordinateCerchi(finestra_di_gioco.vertices);
@@ -107,6 +108,7 @@ void costruisciScena(vector<Figura>* Scena) {
 		circle.Model = scale(circle.Model, circle.scale);
 		INIT_VAO(&circle);
 		Scena->push_back(circle);
+		counterCibo++;
 	}
 }
 

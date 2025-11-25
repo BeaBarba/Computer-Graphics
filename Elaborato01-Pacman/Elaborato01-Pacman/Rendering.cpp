@@ -32,6 +32,9 @@ extern float delta_time;
 /* Tempo */
 float last_frame = 0.0;													// Tempo per calcolare il tempo di rendering di un frame
 
+/* Gioco */
+extern int counterCibo;			// Conteggio del cibo ancora nella finestra di gioco
+
 void rendering(float current_time) {
 
 	/* Pulizia del buffer del colore di sfondo */
@@ -48,7 +51,7 @@ void rendering(float current_time) {
 	last_frame = current_time;
 
 	/* Disegna una delle tre interfacce */
-	if (button_set) {
+	if (button_set && counterCibo > 0) {
 
 		/* ---------------------------------------- Gioco Attivo ------------------------------------- */
 		interfaceGame();
@@ -115,6 +118,16 @@ void rendering(float current_time) {
 			actionAfterCollision(&Scena[i]);
 		}
 
+	}
+	else if (button_set && counterCibo == 0) {
+
+		/* ---------------------------------------- Fine Gioco ------------------------------------- */
+		interfaceGameEnd();
+
+		glClearColor(clear_color_1.x, clear_color_1.y, clear_color_1.z, clear_color_1.w);
+		glClear(GL_COLOR_BUFFER_BIT);
+
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 	}
 	else {
 		/* ---------------------------------------- Inizio Gioco ------------------------------------- */

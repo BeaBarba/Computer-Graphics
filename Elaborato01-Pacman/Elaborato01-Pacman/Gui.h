@@ -1,6 +1,7 @@
 #pragma once
 
 #include "lib.h"
+#include "GestioneEventi.h"
 #include <ImGui\imgui.h>                // Libreria core ImGui
 #include <ImGui\imgui_impl_glfw.h>      // Integrazione ImGui con GLFW (gestione finestra/input)
 #include <ImGui\imgui_impl_opengl3.h>   // Integrazione ImGui con OpenGL3 (rendering)
@@ -9,4 +10,5 @@
 void InitializeImGui(GLFWwindow* window);
 void interfaceMenu(void);
 void interfaceGame(void);
+void interfaceGameEnd(void);
 void closeGUI(void);

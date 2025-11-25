@@ -90,6 +90,9 @@
     <ClInclude Include="BoundingBox.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
+    <ClInclude Include="GestioneCollisioni.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C:\dependencies_GL_GLFW\ImGui\imgui.cpp">
@@ -150,6 +153,9 @@
       <Filter>File di origine</Filter>
     </ClCompile>
     <ClCompile Include="BoundingBox.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="GestioneCollisioni.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
   </ItemGroup>

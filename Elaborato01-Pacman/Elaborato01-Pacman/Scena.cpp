@@ -5,6 +5,9 @@
 extern int window_width, window_height;
 extern float window_width_background, window_height_background;
 
+/* Gioco */
+extern int counterCibo;
+
 /* Matrici di trasformazione */
 float angolo = 0.0;
 float dx = 0.0, dy = 0.0;
@@ -49,6 +52,7 @@ void costruisciScena(vector<Figura>* Scena) {
 	pacman.position = vec3((float)window_width / 4.0, (float)window_height / 20.0, 0.0);
 	pacman.orientamento = DESTRA;
 	pacman.nome = PACMAN;
+	pacman.isalive = true;
 	INIT_PACMAN(0.0, 0.0, 0.2, 0.2, &pacman, vec4(1.0, 1.0, 0.0, 1.0), vec4(1.0, 0.9, 0.0, 1.0));
 	pacman.Model = mat4(1.0);
 	pacman.scale = vec3(window_width / 12.0, window_width / 12.0, 0.0);
@@ -65,6 +69,7 @@ void costruisciScena(vector<Figura>* Scena) {
 		wall.nTriangles = 2;
 		wall.position = vec3(offset_finestra_width, offset_finestra_height, 1.0);
 		wall.nome = MURI;
+		wall.isalive = true;
 		INIT_MURO(muro.bottom_start, muro.bottom_end, muro.top_start, muro.top_end, &wall, vec4(0.1, 0.1, 1.0, 0.5), vec4(0.0, 0.0, 1.0, 1.0));
 		wall.Model = mat4(1.0);
 		wall.scale = finestra_di_gioco.scale;
@@ -80,6 +85,7 @@ void costruisciScena(vector<Figura>* Scena) {
 		butterfly.nTriangles = 30;
 		butterfly.position = vec3(offset_finestra_width + 10.0, offset_finestra_height, 1.0);
 		butterfly.nome = FARFALLE;
+		butterfly.isalive = true;
 		INIT_BUTTERFLY(farfalla.centro_x, farfalla.centro_y, (farfalla.raggio / 3), (farfalla.raggio / 3), &butterfly, vec4(0.0, 1.0, 0.5, 1.0), vec4(1.0, 1.0, 1.0, 1.0));
 		butterfly.Model = mat4(1.0);
 		butterfly.scale = finestra_di_gioco.scale;
@@ -94,6 +100,7 @@ void costruisciScena(vector<Figura>* Scena) {
 		circle.nTriangles = 30;
 		circle.position = vec3(offset_finestra_width + 10.0, offset_finestra_height + 10.0, 1.0);
 		circle.nome = CERCHI;
+		circle.isalive = true;
 		INIT_CIRCLE(cerchio.centro_x, cerchio.centro_y, (cerchio.raggio / 4), (cerchio.raggio / 4), &circle, vec4(0.0, 1.0, 0.5, 1.0), vec4(1.0, 1.0, 1.0, 1.0));
 		circle.Model = mat4(1.0);
 		circle.scale = finestra_di_gioco.scale;

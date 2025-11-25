@@ -43,10 +43,13 @@ mat4 projection, projection_background;							// Matrice che normalizza le coord
 bool wireframe = false;											// Flag per decidere se disegnare solo i contorni di una figura 
 bool showBB = false;											// Flag per decidere se disegnare il Bounding Box della figura
 
-
 /* Tempi */
 float currentTime;												// Variabile per tracciare il tempo
 float delta_time;												// Tempo di rendering di un frame
+
+/* Gioco */
+int punteggio = 0;												// Serve a registrare il punteggio per poi essere mostrato a video
+int counterCibo = 0;												// Conta gli oggetti nella scena per decidere la fine del gioco
 
 int main(void) {
 

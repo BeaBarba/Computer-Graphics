@@ -31,6 +31,7 @@
     <ClInclude Include="C:\dependencies_GL_GLFW\ImGui\imstb_truetype.h" />
     <ClInclude Include="CampoDaGioco.h" />
     <ClInclude Include="Cibo.h" />
+    <ClInclude Include="GestioneCollisioni.h" />
     <ClInclude Include="GestioneEventi.h" />
     <ClInclude Include="Gui.h" />
     <ClInclude Include="InitGeometrie.h" />
@@ -54,6 +55,7 @@
     <ClCompile Include="C:\dependencies_GL_GLFW\ImGui\imgui_tables.cpp" />
     <ClCompile Include="C:\dependencies_GL_GLFW\ImGui\imgui_widgets.cpp" />
     <ClCompile Include="Cibo.cpp" />
+    <ClCompile Include="GestioneCollisioni.cpp" />
     <ClCompile Include="GestioneEventi.cpp" />
     <ClCompile Include="Gui.cpp" />
     <ClCompile Include="InitGeometrie.cpp" />

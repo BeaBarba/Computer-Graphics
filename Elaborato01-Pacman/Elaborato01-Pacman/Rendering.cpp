@@ -99,14 +99,20 @@ void rendering(float current_time) {
 		disegnaFormaConBB(Scena[PACMAN], wireframe, showBB);
 		
 		for (int i = 3; i < Scena.size(); i++) {
-		
-			posizionaOrientaScala(&Scena[i], 0.0);
+			/* Disegno delle figure nel gioco */
+			if (Scena[i].isalive) {
 
-			updateBB(&Scena[i]);
+				posizionaOrientaScala(&Scena[i], 0.0);
 
-			ShaderMaker::useShaderWithUniform(program_id, projection, Scena[i].Model, 0.0, vec2(window_width, window_height), false, false);
+				updateBB(&Scena[i]);
 
-			disegnaFormaConBB(Scena[i], wireframe, showBB);
+				ShaderMaker::useShaderWithUniform(program_id, projection, Scena[i].Model, 0.0, vec2(window_width, window_height), false, false);
+
+				disegnaFormaConBB(Scena[i], wireframe, showBB);
+			}
+
+			/* Gestione collisioni */
+			actionAfterCollision(&Scena[i]);
 		}
 
 	}

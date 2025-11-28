@@ -11,11 +11,17 @@ extern vector<Figura> Scena;                                                // L
 extern mat4 projection, projection_background;				                // Matrice che normalizza le coordinate del mondo in cordinate NDC
 extern float angolo;                                                        // Angolo di rotazione di Pacman
 
+/* Animazione */
+extern bool check_collisione;
+
 /* Aspect Razio */
 float x_offset = 0.0, y_offset = 0.0;                                       // Offset per centrare la viewport
 
 /* Movimento */
 const float PASSO = 4;                                                      // Spostamento della figura costante
+int ultima_direzione = Orientamento::DESTRA;                                // Variabile di controllo per lo spostamento
+
+void spostamenta_pacman(int direzione);
 
 /* Funzione di callback chiamata ogni volta che la finestra(framebuffer) viene ridimensionata.
    Gestisce il corretto rapporto di aspetto e centra la viewport rispetto alle dimensioni della finestra.*/
@@ -58,6 +64,32 @@ void framebuffer_size_callback(GLFWwindow* window, int w, int h) {
 }
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
+    if (check_collisione) {
+        switch (ultima_direzione) {
+        case SU:
+            spostamenta_pacman(GIU);
+            spostamenta_pacman(GIU);
+            spostamenta_pacman(GIU);
+            break;
+        case GIU:
+            spostamenta_pacman(SU);
+            spostamenta_pacman(SU);
+            spostamenta_pacman(SU);
+            break;
+        case SINISTRA:
+            spostamenta_pacman(DESTRA);
+            spostamenta_pacman(DESTRA);
+            spostamenta_pacman(DESTRA);
+            break;
+        case DESTRA:
+            spostamenta_pacman(SINISTRA);
+            spostamenta_pacman(SINISTRA);
+            spostamenta_pacman(SINISTRA);
+            break;
+        default: break;
+        }
+        check_collisione = false;
+    }
     switch (key) {
     case GLFW_KEY_ESCAPE:
         if (action == GLFW_PRESS)
@@ -66,24 +98,47 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
         break;
     case GLFW_KEY_UP:                       // Freccia su
         angolo = 90.0;
-        Scena[PACMAN].position = vec3(Scena[PACMAN].position.x, Scena[PACMAN].position.y + PASSO, 1.0);
+        spostamenta_pacman(SU);
         Scena[PACMAN].orientamento = SU;
         break;
     case GLFW_KEY_DOWN:                     // Freccia giù
         angolo = 270.0;
-        Scena[PACMAN].position = vec3(Scena[PACMAN].position.x, Scena[PACMAN].position.y - PASSO, 1.0);
+        spostamenta_pacman(GIU);
         Scena[PACMAN].orientamento = GIU;
         break;
     case GLFW_KEY_LEFT:                     // Freccia sinistra
         angolo = 180.0;
-        Scena[PACMAN].position = vec3(Scena[PACMAN].position.x - PASSO, Scena[PACMAN].position.y, 1.0);
+        spostamenta_pacman(SINISTRA);
         Scena[PACMAN].orientamento = SINISTRA;
         break;
     case GLFW_KEY_RIGHT:                    // Freccia destra
         angolo = 0.0;
-        Scena[PACMAN].position = vec3(Scena[PACMAN].position.x + PASSO, Scena[PACMAN].position.y, 1.0);
+        spostamenta_pacman(DESTRA);
         Scena[PACMAN].orientamento = DESTRA;
         break;
+    }
+    
+}
+
+void spostamenta_pacman(int direzione) {
+    switch (direzione) {
+    case SU: 
+        Scena[PACMAN].position = vec3(Scena[PACMAN].position.x, Scena[PACMAN].position.y + PASSO, 1.0);
+        ultima_direzione = Orientamento::SU;
+        break;
+    case GIU:
+        Scena[PACMAN].position = vec3(Scena[PACMAN].position.x, Scena[PACMAN].position.y - PASSO, 1.0);
+        ultima_direzione = Orientamento::GIU;
+        break;
+    case SINISTRA:
+        Scena[PACMAN].position = vec3(Scena[PACMAN].position.x - PASSO, Scena[PACMAN].position.y, 1.0);
+        ultima_direzione = SINISTRA;
+        break;
+    case DESTRA:
+        Scena[PACMAN].position = vec3(Scena[PACMAN].position.x + PASSO, Scena[PACMAN].position.y, 1.0);
+        ultima_direzione = Orientamento::DESTRA;
+        break;
+    default: break;
     }
 }
 

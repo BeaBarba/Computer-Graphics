@@ -1,8 +1,15 @@
 #include "GestioneCollisioni.h"
 
+/* Variabili esterne */
+/* Scena */
 extern vector<Figura> Scena;
+
+/* Gioco */
 extern int punteggio;			// Conteggio del punteggio del giocatore
 extern int counterCibo;			// Conteggio del cibo ancora nella finestra di gioco
+
+/* Animazione */
+extern bool check_collisione;
 
 /* Verifica se due oggetti di tipo Figura collidono utilizzando i loro Bounding Box nel sistema di riferimento del mondo.
     Parametri:
@@ -41,10 +48,7 @@ void actionAfterCollision(Figura* fig) {
 	}
 	else if (fig->nome == MURI && fig->isalive) {
 		if (checkCollision(Scena[PACMAN], vec4(fig->min_BB_w.x, fig->min_BB_w.y, fig->max_BB_w.x, fig->max_BB_w.y))) {
-			cout << "Collisione con muro" << endl;
-		}
-		else {
-
+			check_collisione = true;
 		}
 	}
 }

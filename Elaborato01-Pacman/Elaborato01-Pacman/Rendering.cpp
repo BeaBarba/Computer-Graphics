@@ -33,7 +33,7 @@ extern float delta_time;
 float last_frame = 0.0;													// Tempo per calcolare il tempo di rendering di un frame
 
 /* Gioco */
-extern int counterCibo;			// Conteggio del cibo ancora nella finestra di gioco
+extern int counterCibo;													// Conteggio del cibo ancora nella finestra di gioco
 
 void rendering(float current_time) {
 
